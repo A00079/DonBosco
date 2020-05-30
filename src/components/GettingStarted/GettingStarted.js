@@ -99,7 +99,7 @@ const GettingStarted = () => {
                         >
                             <Grid item xs={3} md={3} container className={classes.iconHolder}>
                                 <div>
-                                    <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.icons}>
+                                    <Avatar alt="Remy Sharp" src="../../..assets/img/Demo.png.jpg" className={classes.icons}>
                                         B
                                     </Avatar>
                                     <p className={classes.iconName}>father</p>
