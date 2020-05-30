@@ -80,7 +80,7 @@ const GettingStarted = () => {
         >
             <Grid item xs={12} md={12}>
                 <Typography className={classes.welcomText} variant="h3" component="h2">
-                    WelCome
+                    WelCom
           </Typography>
             </Grid>
             <Grid item xs={12} md={12}>
