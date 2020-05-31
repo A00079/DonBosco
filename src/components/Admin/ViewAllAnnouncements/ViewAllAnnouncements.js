@@ -52,25 +52,26 @@ export default function AcccessibleTable() {
   },[])
 
   return (
+    <React.Fragment>
+      <h4>Announcements</h4>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="caption table">
         <caption>A basic table example with a caption</caption>
         <TableHead>
           <TableRow>
-            <TableCell>Announcements</TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Title</TableCell>
+            <TableCell align="right">Announcement</TableCell>
+            <TableCell align="right">Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {announcements.map((row) => (
             <TableRow key={row._id}>
-              <TableCell component="th" scope="row">
-                Message
-              </TableCell>
+              <TableCell align="right">{row.Name}</TableCell>
+              <TableCell align="right">{row.Title}</TableCell>
               <TableCell align="right">{row.Message}</TableCell>
+              <TableCell align="right">{row.Date}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -79,5 +80,6 @@ export default function AcccessibleTable() {
         <CircularProgress color="inherit" />
       </Backdrop>
     </TableContainer>
+    </React.Fragment>
   );
 }
