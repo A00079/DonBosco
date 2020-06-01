@@ -13,6 +13,18 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AnnouncementRest from '../../../REST/AnnouncementREST.js';
+import Input from '@material-ui/core/Input';
+import FilledInput from '@material-ui/core/FilledInput';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Copyright() {
     return (
@@ -50,21 +62,94 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const classes = useStyles();
     const [announcement, setAnnouncement] = useState('');
+    const [announceTitle, setannounceTitle] = useState('');
+    const [announceName, setannounceName] = useState('');
+    const [announceDate, setannounceDate] = useState('');
+    const [isdisable, setisdisable] = useState('');
+    const [isannouncement, setisannouncement] = useState(false);
+
+
     const handleAnnouncement = (e) =>{
         console.log('Announcement', e.target.value)
+        if(e.target.value){
+            setisannouncement(false)
+        }
         setAnnouncement(e.target.value)
+    }
+    const handleAnnounceDate = (e) =>{
+        const currentdate = e.target.value;
+        validateDate(currentdate);
+        console.log('Announcement Date', e.target.value)
+        setannounceDate(e.target.value)
+    }
+    const validateDate = (currentdate) =>{
+
+        var inputDate = new Date(currentdate);
+        var todaysDate = new Date();
+        if(inputDate.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0)){
+            setisdisable(false)
+        }else{
+            setisdisable(true)
+            toast.error('Past Dates Not Allowed', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }
+    const handleAnnounceTitle = (e) =>{
+        console.log('Announcement Title', e.target.value)
+        setannounceTitle(e.target.value)
+    }
+
+    const handleAnnounceName = (e) =>{
+        console.log('Announcement Name', e.target.value)
+        setannounceName(e.target.value)
     }
     const PostAnnouncement = () =>{
         let api_url = "api/admin/announcement/create";
         let data = {
-            'Message': announcement
+            'Title': announceTitle,
+            'Name': 'fr.'+announceName,
+            'Message': announcement,
+            'Date': announceDate
         }
-        AnnouncementRest
+        if(data.Message !=''){
+            AnnouncementRest
             .postAnnouncementdetails(api_url, data)
             .then(response => {
                 console.log("Response Data...", response);
+                document.getElementById('Title').value = '';
+                document.getElementById('outlined-adornment-amount').value = '';
                 document.getElementById('Announcement').value = '';
+                document.getElementById('date').value = '';
+                toast.success('Announcement Posted Successfully.', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             });
+        }else{
+            setisannouncement(true)
+            toast.error('Announcement Can Not Be Empty.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        
         console.log('save data',data)
     }
 
@@ -79,53 +164,67 @@ export default function SignUp() {
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    autoComplete="fname"
-                                    name="firstName"
+                                    onChange={e=>handleAnnounceTitle(e)}
+                                    autoComplete="Title"
+                                    name="Title"
                                     variant="outlined"
-                                    required
                                     fullWidth
-                                    id="firstName"
-                                    label="First Name"
+                                    id="Title"
+                                    label="Title"
                                     autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="lname"
+                            <FormControl
+                            id='Name'
+                            onChange={e=>handleAnnounceName(e)}
+                            fullWidth className={classes.margin} variant="outlined">
+                                <InputLabel
+                                
+                                 htmlFor="outlined-adornment-amount"
+                                 >Name</InputLabel>
+                                <OutlinedInput
+                                    id="outlined-adornment-amount"
+                                    startAdornment={<InputAdornment position="start">fr.</InputAdornment>}
+                                    labelWidth={60}
                                 />
+                            </FormControl>
+                            </Grid>
+                            <Grid item xs={12}>
+                            <TextField
+                                error={isannouncement}
+                                onChange={e=>handleAnnouncement(e)}
+                                id="Announcement"
+                                label="Announcement"
+                                required
+                                multiline
+                                rows={4}
+                                fullWidth
+                                name="Announcement"
+                                defaultValue=""
+                                variant="outlined"
+                                autoComplete="Announcement"
+                            />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
-                                    onChange={e=>handleAnnouncement(e)}
-                                    variant="outlined"
-                                    required
+                                    error={isdisable}
+                                    onChange={e=>handleAnnounceDate(e)}
+                                    id="date"
                                     fullWidth
-                                    id="Announcement"
-                                    label="Announcement"
-                                    name="Announcement"
-                                    autoComplete="Announcement"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
                                     variant="outlined"
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
+                                    label="Announce Date"
+                                    type="date"
+                                    minDate={new Date()}
+                                    className={classes.textField}
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
                                 />
                             </Grid>
                         </Grid>
                         <Button
+                            disabled={isdisable}
                             onClick={() => PostAnnouncement()}
                             fullWidth
                             variant="contained"
@@ -139,6 +238,7 @@ export default function SignUp() {
                 <Box mt={5}>
                     <Copyright />
                 </Box>
+                <ToastContainer />
             </Container>
     );
 }

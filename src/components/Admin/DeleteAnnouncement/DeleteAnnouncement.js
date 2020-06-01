@@ -72,28 +72,28 @@ export default function AcccessibleTable() {
   }
 
   return (
+    <React.Fragment>
+      <h4>Management Announcements</h4>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="caption table">
         <caption>A basic table example with a caption</caption>
         <TableHead>
           <TableRow>
-            <TableCell>Announcements</TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Title</TableCell>
+            <TableCell align="right">Announcement</TableCell>
+            <TableCell align="right">Date</TableCell>
             <TableCell align="right">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-        {announcements.map((row) => (
+          {announcements.map((row) => (
             <TableRow key={row._id}>
-              <TableCell component="th" scope="row">
-                Message
-              </TableCell>
+              <TableCell align="right">{row.Name}</TableCell>
+              <TableCell align="right">{row.Title}</TableCell>
               <TableCell align="right">{row.Message}</TableCell>
-              <TableCell align="right"></TableCell>
-              <TableCell align="right"></TableCell>
-              <TableCell title='Delete' align="right"><DeleteOutlinedIcon onClick={() =>deleteAnnouncement(row._id)} /></TableCell>
+              <TableCell align="right">{row.Date}</TableCell>
+              <TableCell title='Delete' align="right"><DeleteOutlinedIcon onClick={()=>deleteAnnouncement(row._id)} /></TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -102,5 +102,6 @@ export default function AcccessibleTable() {
         <CircularProgress color="inherit" />
       </Backdrop>
     </TableContainer>
+    </React.Fragment>
   );
 }
