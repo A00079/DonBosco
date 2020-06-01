@@ -49,6 +49,25 @@ export default function AcccessibleTable() {
     })
   },[])
   const deleteAnnouncement = (Annonce_id) =>{
+    setOpen(!open)
+    let api_url = 'api/admin/announcement/delete';
+    let data = {
+        'id': Annonce_id.toString()
+    }
+    AnnouncementRest
+        .deleteAnnouncements(api_url, data)
+        .then(response => {
+          let api_url = "api/admin/announcement/read";
+          AnnouncementRest
+          .getAnnouncementsList(api_url)
+          .then((res) =>{
+              setannouncement(res)
+              console.log('announcements',announcements)
+          })
+            console.log("Response Data...", response);
+        setOpen(false)
+
+        });
     console.log('Annonce_id',Annonce_id)
   }
 
@@ -72,7 +91,9 @@ export default function AcccessibleTable() {
                 Message
               </TableCell>
               <TableCell align="right">{row.Message}</TableCell>
-              <TableCell title='Delete' align="right"><DeleteOutlinedIcon onClick={deleteAnnouncement(row._id)} /></TableCell>
+              <TableCell align="right"></TableCell>
+              <TableCell align="right"></TableCell>
+              <TableCell title='Delete' align="right"><DeleteOutlinedIcon onClick={() =>deleteAnnouncement(row._id)} /></TableCell>
             </TableRow>
           ))}
         </TableBody>
