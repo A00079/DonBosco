@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange } from '@material-ui/core/colors';
+import About from '../Navigations/About/About.js';
 
 const useStyles = makeStyles((theme) => ({
     cardroot: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         height: '80px',
         width: '80px'
     },
-    iconName:{
+    iconName: {
         textAlign: 'center'
     },
     bullet: {
@@ -71,69 +72,74 @@ const GettingStarted = () => {
     const bull = <span className={classes.bullet}>•</span>;
 
     return (
-        <Grid
-            className={classes.Welcom}
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-        >
-            <Grid item xs={12} md={12}>
-                <Typography className={classes.welcomText} variant="h3" component="h2">
-                    WelCome
+        <React.Fragment>
+            <Grid
+                className={classes.Welcom}
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+            >
+                <Grid item xs={12} md={12}>
+                    <Typography className={classes.welcomText} variant="h3" component="h2">
+                        WelCome
           </Typography>
-            </Grid>
-            <Grid item xs={12} md={12}>
-                <Typography className={classes.welcomText2} variant="h6" component="h2">
-                    Let's Get Started.
+                </Grid>
+                <Grid item xs={12} md={12}>
+                    <Typography className={classes.welcomText2} variant="h6" component="h2">
+                        Let's Get Started.
                 </Typography>
+                </Grid>
+                <Grid className={classes.appQuotes} item xs={12} md={12}>
+                    <Card className={classes.cardroot} elevation={0}>
+                        <CardContent className={classes.cardcontainer}>
+                            <Grid
+                                container
+                                direction="row"
+                                justify="center"
+                                alignItems="center"
+                            >
+                                <Grid item xs={3} md={3} container className={classes.iconHolder}>
+                                    <div>
+                                        <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.icons}>
+                                            B
+                                    </Avatar>
+                                        <p className={classes.iconName}>father</p>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={3} md={3} container className={classes.iconHolder}>
+                                    <div>
+                                        <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.icons}>
+                                            B
+                                    </Avatar>
+                                        <p className={classes.iconName}>father</p>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={3} md={3} container className={classes.iconHolder}>
+                                    <div>
+                                        <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.icons}>
+                                            B
+                                    </Avatar>
+                                        <p className={classes.iconName}>father</p>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={3} md={3} container className={classes.iconHolder}>
+                                    <div>
+                                        <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.icons}>
+                                            B
+                                    </Avatar>
+                                        <p className={classes.iconName}>father</p>
+                                    </div>
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={3} md={3} container className={classes.iconHolder}>
+                    <About />
+                </Grid>
             </Grid>
-            <Grid className={classes.appQuotes} item xs={12} md={12}>
-                <Card className={classes.cardroot} elevation={0}>
-                    <CardContent className={classes.cardcontainer}>
-                        <Grid
-                            container
-                            direction="row"
-                            justify="center"
-                            alignItems="center"
-                        >
-                            <Grid item xs={3} md={3} container className={classes.iconHolder}>
-                                <div>
-                                    <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.icons}>
-                                        B
-                                    </Avatar>
-                                    <p className={classes.iconName}>father</p>
-                                </div>
-                            </Grid>
-                            <Grid item xs={3} md={3} container className={classes.iconHolder}>
-                                <div>
-                                    <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.icons}>
-                                        B
-                                    </Avatar>
-                                    <p className={classes.iconName}>father</p>
-                                </div>
-                            </Grid>
-                            <Grid item xs={3} md={3} container className={classes.iconHolder}>
-                                <div>
-                                    <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.icons}>
-                                        B
-                                    </Avatar>
-                                    <p className={classes.iconName}>father</p>
-                                </div>
-                            </Grid>
-                            <Grid item xs={3} md={3} container className={classes.iconHolder}>
-                                <div>
-                                    <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.icons}>
-                                        B
-                                    </Avatar>
-                                    <p className={classes.iconName}>father</p>
-                                </div>
-                            </Grid>
-                        </Grid>
-                    </CardContent>
-                </Card>
-            </Grid>
-        </Grid>
+        </React.Fragment>
     )
 }
 
