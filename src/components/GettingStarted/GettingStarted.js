@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '30px'
     },
     cardcontainer: {
-        height: '100px !important'
+        height: '8% !important'
     },
     iconHolder: {
         justifyContent: 'center'
