@@ -1,7 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from './Header.js';
+import { withRouter } from 'react-router-dom';
 
-export default function PersistentDrawerLeft() {
+
+const  PersistentDrawerLeft = (props)=> {
+
+  useEffect(()=>{
+    console.log('Admin Panel...')
+    var x = localStorage.getItem("sessionid");
+    console.log('xxxx',x)
+    if(x === null){
+      props.history.push('/')
+    }
+  })
 
   return (
     <React.Fragment>
@@ -9,3 +20,5 @@ export default function PersistentDrawerLeft() {
     </React.Fragment>
   );
 }
+
+export default withRouter(PersistentDrawerLeft);

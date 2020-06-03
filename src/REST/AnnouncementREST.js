@@ -6,6 +6,10 @@ const getUserData = {
     const url = urls;
     return this.requestPostCall(baseUrl + url,data);
   },
+  updateAnnouncementdetails(urls,data) {
+    const url = urls;
+    return this.requestPostCall(baseUrl + url,data);
+  },
   getAnnouncementsList(urls) {
     const url = urls;
     return this.requestGetCall(baseUrl + url);

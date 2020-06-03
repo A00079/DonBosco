@@ -84,9 +84,9 @@ export default function SignUp() {
     }
     const validateDate = (currentdate) =>{
 
-        var inputDate = new Date(currentdate);
-        var todaysDate = new Date();
-        if(inputDate.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0)){
+        var selectedDate = new Date(currentdate);
+        var now = new Date();
+        if(!selectedDate < now){
             setisdisable(false)
         }else{
             setisdisable(true)
@@ -114,7 +114,7 @@ export default function SignUp() {
         let api_url = "api/admin/announcement/create";
         let data = {
             'Title': announceTitle,
-            'Name': 'fr.'+announceName,
+            'Name': announceName,
             'Message': announcement,
             'Date': announceDate
         }

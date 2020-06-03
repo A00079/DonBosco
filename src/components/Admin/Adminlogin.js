@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 import { withRouter } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import uuid from 'react-uuid'
 
 function Copyright() {
   return (
@@ -57,6 +58,8 @@ const SignIn = (props)=> {
   const handleSignin = () =>{
     console.log('adminID',adminID)
     console.log('adminPass',adminPass)
+    console.log('UID...',uuid())
+    localStorage.setItem("sessionid", uuid());
     
     if(adminID === 'Donbosco' && adminPass === 'Donbosco'){
         setTimeout(()=>{
