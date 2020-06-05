@@ -1,4 +1,4 @@
-const baseUrl = process.env.REACT_BASE_URL;
+const baseUrl = process.env.REACT_APP_API_URL;
 // const baseUrl = 'http://localhost:5000/'
 const getUserData = {
 
