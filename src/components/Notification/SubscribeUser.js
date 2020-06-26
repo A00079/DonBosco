@@ -10,12 +10,6 @@ import AllowNotification from '../Notification/AskNotification.js';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  hide: {
-    display: 'none'
-  },
-  show: {
-    display: 'block'
-  }
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -70,8 +64,10 @@ export default function AlertDialogSlide(props) {
           </Button>
         </DialogActions>
       </Dialog>
-      <div className={(showpopup) ? classes.show : classes.hide}>
-        <AllowNotification />
+      <div>
+        {
+          (showpopup) ? <AllowNotification /> : <div></div>
+        }
       </div>
     </div>
   );

@@ -70,7 +70,6 @@ export default function SignUp() {
 
 
     const handleAnnouncement = (e) =>{
-        console.log('Announcement', e.target.value)
         if(e.target.value){
             setisannouncement(false)
         }
