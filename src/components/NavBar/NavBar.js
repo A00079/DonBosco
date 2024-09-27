@@ -140,7 +140,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Don Bosco
+            Resurrection Parish
           </Typography>
           <div className={classes.grow} />
 
@@ -178,19 +178,11 @@ export default function PersistentDrawerLeft() {
             <ListItemIcon><InboxIcon /></ListItemIcon>
             <ListItemText primary='Home' />
           </ListItem>
-          <ListItem button>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
-            <ListItemText primary='Gallary' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
-            <ListItemText primary='About' />
-          </ListItem>
           <ListItem button onClick={handleClick}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary="Parish Body" />
+            <ListItemText primary="Parish Bodies" />
             {subopen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={subopen} timeout="auto" unmountOnExit>
@@ -227,6 +219,18 @@ export default function PersistentDrawerLeft() {
               </ListItem>
             </List>
           </Collapse>
+          <ListItem button>
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary='Gallery' />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary='Announcements' />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary='About Us' />
+          </ListItem>
         </List>
         <Divider />
         
